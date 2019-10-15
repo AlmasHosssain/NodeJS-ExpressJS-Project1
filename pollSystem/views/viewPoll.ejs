@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Put your opinion</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card card-body">
+                    <h4>Title : <%=poll.tittle %></h4>
+                    <h4>Description : <%=poll.description%></h4>
+                    <div class="my-3">
+                       <h4>Result</h4>
+                       <div class="list-group">
+                           <% for (r of result) { %>
+                             <li class="list-group-item">
+                                <p>
+                                    <%= r.name%>--->
+                                    <strong><%= r.percentage.toFixed(2)%>%</strong>
+                                </p>
+                             </li>
+                            <% } %>
+                       </div>
+                    </div>
+                    <h3>What is your option</h3>
+                    <form method="POST" action="/polls/<%=poll._id%>">
+                        <% for (option of poll.option){%>
+                            <div class="custom-control custom-radio">
+                                <input class="custom-control-input" type="radio" id="<%=option._id%>" value="<%= option.id%>" name="option">
+                                <label class="custom-control-kabel" for="<%=option._id%>">
+                                    <%=option.name%>
+                                </label>
+                            </div>
+                        <% } %>
+                        <input type="submit" value="Submit Your Option" class="btn btn-primary">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

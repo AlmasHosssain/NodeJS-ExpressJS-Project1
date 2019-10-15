@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <title>Create New Poll</title>
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 offset-md-3 my-5">
+                <div class="card card-body">
+                    <h4>Create A New Poll</h4>
+                    <form action="/create" method="POST">
+                        <div class="form-group">
+                            <label for="title">Enter Title</label>
+                            <input type="text" class="form-control" name="title" id="title">
+                        </div>
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" name="description" id="description"></textarea>
+                        </div>
+                        <div id="option">
+                            <p>Enter Your Option</p>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="option" placeholder="option 1">
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="option" placeholder="option 2">
+                            </div>  
+                        </div>
+                        <button class="btn btn-secondary btn-sm my-3" name="addOption" id="addOption">Add More Option</button><br><br>
+                        <input type="submit" class="btn btn-primary" value="Create New Poll">
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let options = document.getElementById('option')
+        let addOption = document.getElementById('addOption')
+        let currentNumber = 3
+
+        addOption.addEventListener('click',(event)=>{
+            event.preventDefault();
+            
+            
+            let addNewOption = () =>{
+                let increase = {
+                    id : currentNumber
+                }
+               let createNewDiv = document.createElement('div'); 
+               createNewDiv.innerHTML = `<div class="form-group">
+                                <input class="form-control" type="text" name="options" placeholder="option ${increase.id}">
+                            </div>`
+                            currentNumber++;
+                options.appendChild(createNewDiv)
+            }
+            addNewOption()
+            
+        })
+        
+    </script>
+</body>
+</html>
